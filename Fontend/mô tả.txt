@@ -1,1 +1,0 @@
-file này chỉ gồm file : html, css, js. ngoài ra không chưa file gì khác.
