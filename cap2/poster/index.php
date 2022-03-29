@@ -14,9 +14,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Đây là trang Người tìm việc</h1>
-    
-    
+    <h1>đây là trang người đăng bài</h1>
     <a href="../logout.php">logout</a>
 </body>
 </html>

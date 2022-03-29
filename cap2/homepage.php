@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    require('./include/connection.php');
+    if(!isset($_SESSION['username'])){
+        header('location:index.php');
+    }
+
+    $job_list = "select job_type,job_title,salary,address,job_date from job_information";
+    
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -13,7 +24,7 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/style2.css">
+    <link rel="stylesheet" href="stylemain.css">
     <!-- Responsive stylesheet -->
 
     <link rel="stylesheet" href="./assets/css/responsive.css">
@@ -47,6 +58,9 @@
                 <li></li>
             </ul>
         </div>
+        <span class="guess_name">hi! <?php echo $_SESSION['name']; echo $_SESSION['id_user']; echo $_SESSION['user_role'];?> </span>
+            <a href="logout.php" id="logoutss">Đăng xuất</a>
+        
         
     </div>
     <div class="wrapper">
@@ -55,515 +69,11 @@
         </div>
         <!-- Main Header Nav -->
 
-        <header class="header-nav menu_style_home_six navbar-scrolltofixed stricky main-menu">
-
-            <div class="container">
-                <!-- Ace Responsive Menu -->
-                <nav>
-                    <!-- Menu Toggle btn-->
-
-                    <div class="menu-toggle"><img class="nav_logo_img img-fluid" src="./assets/images/header-logo5.png"
-                            alt="header-logo5.png"><button type="button" id="menu-btn">
-
-                            <span class="icon-bar">
-                            </span>
-
-                            <span class="icon-bar">
-                            </span>
-
-                            <span class="icon-bar">
-                            </span></button>
-                    </div><a href="index.html" class="navbar_brand float-left dn-smd mt10"><img class="img-fluid"
-                            src="./assets/images/header-logo5.png" alt="header-logo5.png"></a>
-                    <!-- Responsive Menu Structure-->
-                    <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
-                    <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-                        <li><a href="#">
-
-                                <span class="title">Home
-                                </span></a>
-                            <!-- Level Two-->
-                            <ul>
-                                <li><a href="index.html">Home 1</a></li>
-                                <li><a href="index2.html">Home 2</a></li>
-                                <li><a href="index3.html">Home 3</a></li>
-                                <li><a href="index4.html">Home 4</a></li>
-                                <li><a href="index5.html">Home 5</a></li>
-                                <li><a href="index6.html">Home 6</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">
-
-                                <span class="title">Find A Job
-                                </span></a>
-                            <!-- Level Two-->
-                            <ul>
-                                <li><a href="#">Job List</a>
-                                    <ul>
-                                        <li><a href="page-job-list-v1.html">List V1</a></li>
-                                        <li><a href="page-job-list-v2.html">List V2</a></li>
-                                        <li><a href="page-job-list-v3.html">List V3</a></li>
-                                        <li><a href="page-job-list-v4.html">List V4</a></li>
-                                        <li><a href="page-job-list-v5.html">List V5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Job Single</a>
-                                    <ul>
-                                        <li><a href="page-job-single-v1.html">Single V1</a></li>
-                                        <li><a href="page-job-single-v2.html">Single V2</a></li>
-                                        <li><a href="page-job-single-v3.html">Single V3</a></li>
-                                        <li><a href="page-job-single-v4.html">Single V4</a></li>
-                                        <li><a href="page-job-single-v5.html">Single V5</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">
-
-                                <span class="title">Employer
-                                </span></a>
-                            <!-- Level Two-->
-                            <ul>
-                                <li><a href="#">Employer List</a>
-                                    <!-- Level Three-->
-                                    <ul>
-                                        <li><a href="page-employer-list-v1.html">List V1</a></li>
-                                        <li><a href="page-employer-list-v2.html">List V2</a></li>
-                                        <li><a href="page-employer-list-v3.html">List V3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Employer Single</a>
-                                    <!-- Level Three-->
-                                    <ul>
-                                        <li><a href="page-employer-single-v1.html">Single V1</a></li>
-                                        <li><a href="page-employer-single-v2.html">Single V2</a></li>
-                                        <li><a href="page-employer-single-v3.html">Single V3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Employer Admin</a>
-                                    <!-- Level Three-->
-                                    <ul>
-                                        <li><a href="page-employer-dashboard.html">Dashboard</a></li>
-                                        <li><a href="page-employer-profile.html">Profile</a></li>
-                                        <li><a href="page-employer-post-job.html">Post Job</a></li>
-                                        <li><a href="page-employer-manage-job.html">Manage Job</a></li>
-                                        <li><a href="page-employer-resume.html">Resume</a></li>
-                                        <li><a href="page-employer-packages.html">Packages</a></li>
-                                        <li><a href="page-employer-transactions.html">Transactions</a></li>
-                                        <li><a href="page-employer-change-password.html">Change Password</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">
-
-                                <span class="title">Candidates
-                                </span></a>
-                            <ul>
-                                <li><a href="#">Candidates List</a>
-                                    <ul>
-                                        <li><a href="page-candidates-list-v1.html">List V1</a></li>
-                                        <li><a href="page-candidates-list-v2.html">List V2</a></li>
-                                        <li><a href="page-candidates-list-v3.html">List V3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Candidates Single</a>
-                                    <ul>
-                                        <li><a href="page-candidates-single-v1.html">Single v1</a></li>
-                                        <li><a href="page-candidates-single-v2.html">Single v2</a></li>
-                                        <li><a href="page-candidates-single-v3.html">Single v3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Candidates Admin</a>
-                                    <ul>
-                                        <li><a href="page-candidates-dashboard.html">Dashboard</a></li>
-                                        <li><a href="page-candidates-profile.html">Profile</a></li>
-                                        <li><a href="page-candidates-my-resume.html">My Resume</a></li>
-                                        <li><a href="page-candidates-applied-jobs.html">Applied Jobs</a></li>
-                                        <li><a href="page-candidates-cv-manager.html">Cv Manager</a></li>
-                                        <li><a href="page-candidates-favourite-jobs.html">Favourite Jobs</a></li>
-                                        <li><a href="page-candidates-message.html">Message</a></li>
-                                        <li><a href="page-candidates-review.html">Review</a></li>
-                                        <li><a href="page-candidates-job-alert.html">Job Alert</a></li>
-                                        <li><a href="page-candidates-change-password.html">Change Password</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">
-
-                                <span class="title">Pages
-                                </span></a>
-                            <ul>
-                                <li><a href="page-about.html">About</a></li>
-                                <li><a href="#">
-
-                                        <span class="title">Blog
-                                        </span></a>
-                                    <ul>
-                                        <li><a href="page-blog-v1.html">Page Blog v1</a></li>
-                                        <li><a href="page-blog-grid.html">Blog Grid</a></li>
-                                        <li><a href="page-blog-list.html">Blog List</a></li>
-                                        <li><a href="page-blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="page-contact.html">Contact Us</a></li>
-                                <li><a href="page-error.html">404</a></li>
-                                <li><a href="page-faq.html">Faq</a></li>
-                                <li><a href="page-how-it-works.html">How It Works</a></li>
-                                <li><a href="page-invoice.html">Invoice</a></li>
-                                <li><a href="page-log-reg.html">Login/Register</a></li>
-                                <li><a href="page-pricing.html">Pricing</a></li>
-                                <li><a href="page-terms-and-policies.html">Terms And Policies</a></li>
-                                <li><a href="page-ui-element.html">UI Elements</a></li>
-                            </ul>
-                        </li>
-                        <li class="last"><a href="page-employer-post-job.html">
-
-                                <span class="title">Post a Job
-                                </span></a></li>
-                    </ul>
-                    <ul class="sign_up_btn pull-right dn-smd">
-                        <li><a href="#" class="btn btn-md btn-thm3" data-toggle="modal"
-                                data-target="#exampleModalCenter">Log
-
-                                <span class="dn-md">in
-                                </span>/Reg
-
-                                <span class="dn-md">ister
-                                </span></a></li>
-                    </ul>
-                    <!-- Button trigger modal -->
-                </nav>
-                <!-- End of Responsive Menu -->
-            </div>
-        </header>
+        
         <!-- Modal -->
 
-        <div class="sign_up_modal modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
-
-            <div class="modal-dialog modal-dialog-centered" role="document">
-
-                <div class="modal-content">
-
-                    <div class="modal-header"><button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-
-                            <span aria-hidden="true">&times;
-                            </span></button>
-                    </div>
-                    <ul class="sign_up_tab nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
-                                role="tab" aria-controls="home" aria-selected="true">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                role="tab" aria-controls="profile" aria-selected="false">Register</a></li>
-                    </ul>
-
-                    <div class="tab-content" id="myTabContent">
-
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-                            <div class="login_form">
-
-                                <form action="#">
-
-                                    <div class="heading">
-                                        <h3 class="text-center">Quick Login</h3>
-
-                                        <p class="text-center">Don't have an account? <a class="text-thm" href="#">Sign
-                                                Up!</a></p>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Enter email">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Password">
-                                    </div>
-
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Remember me
-                                        </label><a class="tdu text-thm float-right" href="#">Forgot Password?</a>
-                                    </div><button type="submit" class="btn btn-log btn-block btn-thm">Login</button>
-                                    <hr>
-
-                                    <div class="row mt40">
-
-                                        <div class="col-lg"><button type="submit"
-                                                class="btn btn-block color-white bgc-fb"><i
-                                                    class="fa fa-facebook float-left mt5"></i>Facebook</button>
-                                        </div>
-
-                                        <div class="col-lg"><button type="submit"
-                                                class="btn btn-block color-white bgc-gogle"><i
-                                                    class="fa fa-google float-left mt5"></i>Google</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-                            <div class="sign_up_form">
-
-                                <div class="heading">
-                                    <h3 class="text-center">Create New Account</h3>
-
-                                    <p class="text-center">Don't have an account? <a class="text-thm" href="#">Sign
-                                            Up!</a></p>
-                                </div>
-
-                                <form action="#">
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputName1"
-                                            placeholder="User Name">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="exampleInputEmail2"
-                                            placeholder="Email">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" id="exampleInputPhone1"
-                                            placeholder="Phone Number">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <select id="inputState1" class="form-control">
-
-                                            <option selected>Select Sector</option>
-
-                                            <option>Web Developer</option>
-
-                                            <option>Ui/Ux Designer</option>
-
-                                            <option>Photoeditor</option>
-
-                                            <option>Graphics Designer</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" id="exampleInputPassword2"
-                                            placeholder="Password">
-                                    </div>
-
-                                    <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                        <label class="form-check-label" for="exampleCheck2">By Registering You Confirm
-                                            That You Accept <a class="text-thm"
-                                                href="page-terms-and-policies.html">Terms & Conditions</a>And <a
-                                                class="text-thm" href="page-terms-and-policies.html">Privacy Policy</a>
-                                        </label>
-                                    </div><button type="submit" class="btn btn-log btn-block btn-dark">Register</button>
-                                    <hr>
-
-                                    <div class="row mt40">
-
-                                        <div class="col-lg"><button type="submit"
-                                                class="btn btn-block color-white bgc-fb"><i
-                                                    class="fa fa-facebook float-left mt5"></i>Facebook</button>
-                                        </div>
-
-                                        <div class="col-lg"><button type="submit"
-                                                class="btn btn-block color-white bgc-gogle"><i
-                                                    class="fa fa-google float-left mt5"></i>Google</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Main Header Nav For Mobile -->
-
-        <div id="page" class="stylehome1 home6 h0">
-
-            <div class="mobile-menu">
-
-                <div class="header stylehome1 home6"><img class="nav_logo_img img-fluid float-left mt25"
-                        src="./assets/images/header-logo5.png" alt="header-logo5.png"><a class="bgc-seagreen"
-                        href="#menu">
-
-                        <span>
-                        </span></a>
-                </div>
-            </div>
-            <!-- /.mobile-menu -->
-            <nav id="menu" class="stylehome1">
-                <ul>
-                    <li>
-
-                        <span>Home
-                        </span>
-                        <ul>
-                            <li><a href="index.html">Home One</a></li>
-                            <li><a href="index2.html">Home Two</a></li>
-                            <li><a href="index3.html">Home Three</a></li>
-                            <li><a href="index4.html">Home Four</a></li>
-                            <li><a href="index5.html">Home Five</a></li>
-                            <li><a href="index6.html">Home Six</a></li>
-                        </ul>
-                    </li>
-                    <li>
-
-                        <span>Find A Job
-                        </span>
-                        <ul>
-                            <li>
-
-                                <span>Job List
-                                </span>
-                                <ul>
-                                    <li><a href="page-job-list-v1.html">List V1</a></li>
-                                    <li><a href="page-job-list-v2.html">List V2</a></li>
-                                    <li><a href="page-job-list-v3.html">List V3</a></li>
-                                    <li><a href="page-job-list-v4.html">List V4</a></li>
-                                    <li><a href="page-job-list-v5.html">List V5</a></li>
-                                </ul>
-                            </li>
-                            <li>
-
-                                <span>Job Single
-                                </span>
-                                <ul>
-                                    <li><a href="page-job-single-v1.html">Single V1</a></li>
-                                    <li><a href="page-job-single-v2.html">Single V2</a></li>
-                                    <li><a href="page-job-single-v3.html">Single V3</a></li>
-                                    <li><a href="page-job-single-v4.html">Single V4</a></li>
-                                    <li><a href="page-job-single-v5.html">Single V5</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-
-                        <span>Employer
-                        </span>
-                        <ul>
-                            <li>
-
-                                <span>Employer List
-                                </span>
-                                <ul>
-                                    <li><a href="page-employer-list-v1.html">List V1</a></li>
-                                    <li><a href="page-employer-list-v2.html">List V2</a></li>
-                                    <li><a href="page-employer-list-v3.html">List V3</a></li>
-                                </ul>
-                            </li>
-                            <li>
-
-                                <span>Employer Single
-                                </span>
-                                <ul>
-                                    <li><a href="page-employer-single-v1.html">Single V1</a></li>
-                                    <li><a href="page-employer-single-v2.html">Single V2</a></li>
-                                    <li><a href="page-employer-single-v3.html">Single V3</a></li>
-                                </ul>
-                            </li>
-                            <li>
-
-                                <span>Employer Admin
-                                </span>
-                                <ul>
-                                    <li><a href="page-employer-dashboard.html">Dashboard</a></li>
-                                    <li><a href="page-employer-profile.html">Profile</a></li>
-                                    <li><a href="page-employer-post-job.html">Post Job</a></li>
-                                    <li><a href="page-employer-manage-job.html">Manage Job</a></li>
-                                    <li><a href="page-employer-resume.html">Resume</a></li>
-                                    <li><a href="page-employer-packages.html">Packages</a></li>
-                                    <li><a href="page-employer-transactions.html">Transactions</a></li>
-                                    <li><a href="page-employer-change-password.html">Change Password</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-
-                        <span>Candidates
-                        </span>
-                        <ul>
-                            <li>
-
-                                <span>Candidates List
-                                </span>
-                                <ul>
-                                    <li><a href="page-candidates-list-v1.html">List V1</a></li>
-                                    <li><a href="page-candidates-list-v2.html">List V2</a></li>
-                                    <li><a href="page-candidates-list-v3.html">List V3</a></li>
-                                </ul>
-                            </li>
-                            <li>
-
-                                <span>Candidates Single
-                                </span>
-                                <ul>
-                                    <li><a href="page-candidates-single-v1.html">Single v1</a></li>
-                                    <li><a href="page-candidates-single-v2.html">Single v2</a></li>
-                                    <li><a href="page-candidates-single-v3.html">Single v3</a></li>
-                                </ul>
-                            </li>
-                            <li>
-
-                                <span>Candidates Admin
-                                </span>
-                                <ul>
-                                    <li><a href="page-candidates-dashboard.html">Dashboard</a></li>
-                                    <li><a href="page-candidates-profile.html">Profile</a></li>
-                                    <li><a href="page-candidates-my-resume.html">My Resume</a></li>
-                                    <li><a href="page-candidates-applied-jobs.html">Applied Jobs</a></li>
-                                    <li><a href="page-candidates-cv-manager.html">Cv Manager</a></li>
-                                    <li><a href="page-candidates-favourite-jobs.html">Favourite Jobs</a></li>
-                                    <li><a href="page-candidates-message.html">Message</a></li>
-                                    <li><a href="page-candidates-review.html">Review</a></li>
-                                    <li><a href="page-candidates-job-alert.html">Job Alert</a></li>
-                                    <li><a href="page-candidates-change-password.html">Change Password</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-
-                        <span>Pages
-                        </span>
-                        <ul>
-                            <li><a href="page-about.html">About</a></li>
-                            <li>
-
-                                <span>Blog
-                                </span>
-                                <ul>
-                                    <li><a href="page-blog-v1.html">Page Blog v1</a></li>
-                                    <li><a href="page-blog-grid.html">Blog Grid</a></li>
-                                    <li><a href="page-blog-list.html">Blog List</a></li>
-                                    <li><a href="page-blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-contact.html">Contact Us</a></li>
-                            <li><a href="page-error.html">404</a></li>
-                            <li><a href="page-faq.html">Faq</a></li>
-                            <li><a href="page-how-it-works.html">How It Works</a></li>
-                            <li><a href="page-invoice.html">Invoice</a></li>
-                            <li><a href="page-log-reg.html">Login/Register</a></li>
-                            <li><a href="page-pricing.html">Pricing</a></li>
-                            <li><a href="page-terms-and-policies.html">Terms And Policies</a></li>
-                            <li><a href="page-ui-element.html">UI Elements</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Post a Job</a></li>
-                    <li><a class="text-thm" href="page-log-reg.html">Login/Register</a></li>
-                </ul>
-            </nav>
-        </div>
+        
+        
         <!-- Home Design -->
         <section class="home-six parallax ulockd_bgi3" data-stellar-background-ratio="0.3">
 
@@ -574,10 +84,9 @@
                     <div class="col-lg-8">
 
                         <div class="home-text">
-                            <h2 class="fz40">Find The Job That Fits Your Life</h2>
+                            <h2 class="fz40">Tìm kiếm công việc cho bạn</h2>
 
-                            <p class="color-white">Each month, more than 7 million jobseekers turn to website in their
-                                search for work, making over 160,000 applications every day.</p>
+                            <p class="color-white">Welcome to our website. IT job</p>
                         </div>
                     </div>
 
@@ -614,12 +123,12 @@
                                 </div>
 
                                 <div class="search_option_button"><button type="submit"
-                                        class="btn btn-thm btn-dark h70">Search</button>
+                                        class="btn btn-thm btn-dark h70">Tìm kiếm</button>
                                 </div>
                             </form>
                         </div>
 
-                        <p class="color-white">Trending Keywords: DesignCer, Developer, Web, IOS, PHP, Senior, Engineer
+                        <p class="color-white">Từ khóa nổi bật: DesignCer, Developer, Web, IOS, PHP, Senior, Engineer
                         </p>
                     </div>
                 </div>
@@ -640,12 +149,8 @@
 
                                 <div class="nav_container">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active" id="pills-home-tab"
-                                                data-toggle="pill" href="#pills-home" role="tab"
-                                                aria-controls="pills-home" aria-selected="true">Featured Jobs</a></li>
-                                        <li class="nav-item"><a class="nav-link" id="pills-profile-tab"
-                                                data-toggle="pill" href="#pills-profile" role="tab"
-                                                aria-controls="pills-profile" aria-selected="false">Recent Jobs</a></li>
+                                        <li class="nav-item" style="color: #fff;">Việc làm mới nhất</li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -656,7 +161,9 @@
                                     aria-labelledby="pills-home-tab">
 
                                     <div class="row">
-
+                                        <?php 
+                                            foreach($conn->query($job_list) as $value){
+                                        ?>
                                         <div class="col-sm-6 col-lg-6">
 
                                             <div class="fj_post home6">
@@ -666,120 +173,30 @@
                                                     <div class="thumb fn-smd"><img class="img-fluid"
                                                             src="./assets/images/partners/1.jpg" alt="1.jpg">
                                                     </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">JEB Product Sales Specialist</h4>
+                                                    <h5 class="job_chedule text-thm2 mt0"><?php echo $value['job_type'];?></h5>
+                                                    <h4 class="mt0 pt0"><?php echo $value['job_title'];?></h4>
 
-                                                    <p class="text-thm4">Wiggle CRC</p>
+                                                    <p class="text-thm4"><?php echo $value['salary'];?></p>
 
                                                     <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
+                                                    </span><a href="#"><?php echo $value['address'];?></a>
+                                                    <p>Ngày đăng:<?php 
+                                                        
+                                                        $date = date("Y-m-d H:i:s",strtotime(str_replace('/','/',$value['job_date'])));
+                                                        echo $date;
+                                                        
+                                                        ?> </p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6 col-lg-6">
+                                        <?php }?>
 
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/2.jpg" alt="2.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Part Time</h5>
-                                                    <h4 class="mt0 pt0">General Ledger Accountant</h4>
-
-                                                    <p class="text-thm4">Robert Half Finance & Accounting</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">RG40, Wokingham</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/3.jpg" alt="3.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">Junior Digital Graphic Designer</h4>
-
-                                                    <p class="text-thm4">Parkside Recruitment - Uxbridge Finance</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">New Denham, UB8 1JG</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/4.jpg" alt="4.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">UX/UI Designer</h4>
-
-                                                    <p class="text-thm4">NonStop Recruitment Ltd</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/1.jpg" alt="1.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">JEB Product Sales Specialist</h4>
-
-                                                    <p>Wiggle CRC</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/2.jpg" alt="2.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Part Time</h5>
-                                                    <h4 class="mt0 pt0">General Ledger Accountant</h4>
-
-                                                    <p class="text-thm4">Robert Half Finance & Accounting</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade col-lg-12" id="pills-profile" role="tabpanel"
+                                <!-- <div class="tab-pane fade col-lg-12" id="pills-profile" role="tabpanel"
                                     aria-labelledby="pills-profile-tab">
 
                                     <div class="row">
@@ -904,7 +321,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -1206,42 +623,9 @@
             </div>
         </section>
         <!-- Popular Job Categories -->
-        <section class="home6-divider">
-
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-lg-7">
-
-                        <div class="app_grid">
-                            <h1 class="mt0">Download & Enjoy</h1>
-
-                            <p>Search, find and apply for jobs directly on your mobile device or desktop Manage all of
-                                the jobs you have applied to from a convenience secure dashboard.</p><button
-                                class="apple_btn btn-transparent">
-
-                                <span class="flaticon-apple-big-logo">
-                                </span>App Store
-                                <br>Available now on the</button><button class="play_store_btn btn-transparent">
-
-                                <span class="flaticon-play-store">
-                                </span>Google Play
-                                <br>Get in on</button>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-5">
-
-                        <div class="phone_img"><img class="img-fluid" src="./assets/images/resource/phone_home6.png"
-                                alt="phone_home6.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
         <!-- Expert Freelancer List -->
-        <section class="expert-freelancer bgc-fa pb20">
+        <!-- <section class="expert-freelancer bgc-fa pb20">
 
             <div class="container">
 
@@ -1975,7 +1359,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- Browse Local Jobs -->
         <section class="carrer-tips home6">
 
@@ -2357,78 +1741,7 @@
             </div>
         </section>
         <!-- Our Footer -->
-        <section class="footer_one home6">
-
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-sm-6 col-md-4 col-md-3 col-lg-2">
-
-                        <div class="quick_link_widget">
-                            <h4>Quick Links</h4>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Job Packages</a></li>
-                                <li><a href="#">Post New Job</a></li>
-                                <li><a href="#">Jobs Listing</a></li>
-                                <li><a href="#">Jobs Style Grid</a></li>
-                                <li><a href="#">Employer Listing</a></li>
-                                <li><a href="#">Employers Grid</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 col-md-3 col-lg-3">
-
-                        <div class="candidate_widget">
-                            <h4>For Candidates</h4>
-                            <ul class="list-unstyled">
-                                <li><a href="#">User Dashboard</a></li>
-                                <li><a href="#">CV Packages</a></li>
-                                <li><a href="#">Candidate Listing</a></li>
-                                <li><a href="#">Candidates Grid</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-md-4 col-md-3 col-lg-3">
-
-                        <div class="employe_widget">
-                            <h4>For Employers</h4>
-                            <ul class="list-unstyled">
-                                <li><a href="#">Post New</a></li>
-                                <li><a href="#">Job Employer Listing</a></li>
-                                <li><a href="#">Employers Grid</a></li>
-                                <li><a href="#">Job Packages</a></li>
-                                <li><a href="#">Jobs Listing</a></li>
-                                <li><a href="#">Jobs Style Grid</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-8 col-md-6 col-md-3 col-lg-4">
-
-                        <div class="newsletter_widget home6">
-                            <h4>Newsletter</h4>
-
-                            <p>Subscribe to CareerUp Pacific newsletter to get the latest jobs posted, candidates ,and
-                                other latest news stay updated.</p>
-
-                            <form class="form-inline mailchimp_form">
-                                <label class="sr-only" for="inlineFormInputMail2">Name
-                                </label>
-                                <input type="email" class="form-control mb-2 mr-sm-2" id="inlineFormInputMail2"
-                                    placeholder="Enter your email address"><button type="submit"
-                                    class="btn btn-primary mb-2">
-
-                                    <span class="fa fa-paper-plane-o">
-                                    </span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!-- Our Footer Bottom Area -->
         <section class="footer_bottom_area home6 p0">
 
@@ -2464,26 +1777,18 @@
     </script>
     <script type="text/javascript" src="./assets/js/jquery-migrate-3.0.0.min.js">
     </script>
-    <script type="text/javascript" src="./assets/js/popper.min.js">
-    </script>
+   
     <script type="text/javascript" src="./assets/js/bootstrap.min.js">
     </script>
-    <script type="text/javascript" src="./assets/js/jquery.mmenu.all.js">
-    </script>
+    
     <script type="text/javascript" src="./assets/js/ace-responsive-menu.js">
     </script>
     <script type="text/javascript" src="./assets/js/bootstrap-select.min.js">
     </script>
-    <script type="text/javascript" src="./assets/js/snackbar.min.js">
-    </script>
-    <script type="text/javascript" src="./assets/js/simplebar.js">
-    </script>
+  
     <script type="text/javascript" src="./assets/js/parallax.js">
     </script>
-    <script type="text/javascript" src="./assets/js/scrollto.js">
-    </script>
-    <script type="text/javascript" src="./assets/js/jquery-scrolltofixed-min.js">
-    </script>
+    
     <script type="text/javascript" src="./assets/js/jquery.counterup.js">
     </script>
     <script type="text/javascript" src="./assets/js/wow.min.js">

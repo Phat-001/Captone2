@@ -1,3 +1,9 @@
+
+<?php 
+
+    require('login.php');
+    require('register.php');
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -12,7 +18,8 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/style2.css">
+    <link rel="stylesheet" href="stylemain.css">
+    
     <!-- Responsive stylesheet -->
 
     <link rel="stylesheet" href="./assets/css/responsive.css">
@@ -40,7 +47,8 @@
         <div class="preloader">
         </div>
         <!-- Main Header Nav -->
-        <?php include('login.php');?>
+        
+        
         <div class="header-login">
             <div class="logo-header1">
                 <img src="./assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt=""><span>Rabbit Job</span>
@@ -95,20 +103,20 @@
                             <form action="" method="POST">
 
                                 <div class="heading">
-                                    <h3 class="text-center">Login</h3>
+                                    <h3 class="text-center">Đăng Nhập</h3>
 
                                 
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username" name="username">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Tài khoản" name="username" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" name="password" required>
                                 </div>
 
-                                <button type="submit" class="btn btn-log btn-block btn-thm">Login</button>
+                                <button type="submit" name="submit-login" class="btn btn-log btn-block btn-thm">Đăng Nhập</button>
                                 <hr>
 
                                 <div class="row mt40">
@@ -128,7 +136,7 @@
                         <div class="sign_up_form">
 
                             <div class="heading">
-                                <h3 class="text-center">Create New Account</h3>
+                                <h3 class="text-center">Tạo tài khoản</h3>
 
                                 
                             </div>
@@ -138,42 +146,35 @@
 
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                                    <form action="#" method="POST">
+                                    <form action="" method="POST">
 
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="User Name">
+                                            <input type="text" class="form-control" name="username" id="exampleInputName1" placeholder="Tài khoản" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                                            <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="Mật khẩu" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="phone" class="form-control" id="exampleInputPhone1" placeholder="Phone Number">
+                                            <input type="text" name="full_name" class="form-control" id="exampleInputEmail2" placeholder="Họ và tên" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="Email" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="phone" class="form-control" name="phone_number" id="exampleInputPhone1" placeholder="Số điện thoại" required>
                                         </div>
 
                                         
                                         <div class="form-group">
-                                            <select id="inputState1" class="form-control">
-
-                                                <option selected>Select Address</option>
-
-                                                <option>Da Nang</option>
-
-                                                <option>Ha Noi</option>
-
-                                                <option>Ho Chi Minh city</option>
-
-                                                <option>Binh Duong</option>
-                                                <option>Other</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" required>
                                         </div>
                                         
+                                        
 
-                                       <button type="submit" class="btn btn-log btn-block btn-dark">Register</button>
+                                       <button type="submit" name="submit-register" class="btn btn-log btn-block btn-dark">Đăng Ký</button>
                                         <hr>
 
                                        
