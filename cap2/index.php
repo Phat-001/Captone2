@@ -2,7 +2,6 @@
 <?php 
 
     require('login.php');
-    require('register.php');
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -51,7 +50,9 @@
         
         <div class="header-login">
             <div class="logo-header1">
-                <img src="./assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt=""><span>Rabbit Job</span>
+                <a href="#"><img src="./assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt="" ><span style="line-height: 80px;
+    font-size: 34px;
+    color: rgb(27, 46, 32);">Rabbit Job</span></a>
             </div>
         </div>
         <!-- Modal -->
@@ -116,7 +117,16 @@
                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" name="password" required>
                                 </div>
 
+                                <div class="form-group">
+                                    <input type="checkbox" value="" id="quenmatkhau" style="cursor: pointer;"> <label for="quenmatkhau">Nhớ mật khẩu</label>
+                                </div>
+
                                 <button type="submit" name="submit-login" class="btn btn-log btn-block btn-thm">Đăng Nhập</button>
+
+                                <div class="form-group" style="display:flex; justify-content: space-between ;">
+                                    <a href="">quên mật khẩu?</a> 
+                                    <a href="register.php">Tạo tải khoản?</a>
+                                </div>
                                 <hr>
 
                                 <div class="row mt40">
@@ -132,8 +142,7 @@
                     </div>
 
                     <div class="col-sm-12 col-lg-6">
-
-                        <div class="sign_up_form">
+                        <!-- <div class="sign_up_form">
 
                             <div class="heading">
                                 <h3 class="text-center">Tạo tài khoản</h3>
@@ -183,7 +192,8 @@
 
                                 
                             </div>
-                        </div>
+                        </div> -->
+                        <img src="./assets/images/rabbit/login.jpg" alt="">
                     </div>
                 </div>
             </div>

@@ -18,7 +18,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../stylemain.css">
-    <title>Document</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="../js/jquery.dataTables.min.css">
+    <title>Hr</title>
     <style>
         button>a{
             color: #fff;
@@ -28,29 +30,57 @@
             color: #fff;
             text-decoration: none;
         }
+        
+        .item{
+          
+          display: flex;
+    align-items: center;
+    width: 230px;
+    justify-content: space-between;
+
+        }
+        h2{
+          text-align: center;
+        }
+        .logo-header1{
+          position: relative;
+        }
+        .item{
+          position:absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
     </style>
 </head>
 
 <body>
-    <h1>đây là trang hr</h1>
-    <p>xin chào <?php echo $_SESSION['name'];?></p>
-    <a href="../logout.php">logout</a>
-
-    <table class="table table-striped">
+<div class="logo-header1" style="background: #79b530;">
+                <a href="../homepage.php"><img src="../assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt="" ><span style="line-height: 80px;
+    font-size: 34px;
+    color: rgb(27, 46, 32);">Rabbit Job</span></a>
+    <div class="item">
+    <span>hi! <?php echo $_SESSION['name'];?></span>
+      <a href="../logout.php" style="color: black; text-decoration:none;"><i class="fa-solid fa-right-from-bracket"></i>đăng xuất</a>
+    </div>
+    </div>
+    
+    
+<h2>Những công việc đã đăng</h2>
+    <table class="table table-striped" id="my-table3">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Tiêu đề</th>
             <th scope="col">Ngày đăng</th>
             <th scope="col">địa chỉ</th>
             <th scope="col">lương</th>
-            <th scope="col">mô tả công việc</th>
+            <th scope="col">Cấp độ</th>
             <th scope="col">thể loại</th>
             <th><button type="button" class="btn btn-success"><a href="add_job.php">Thêm mới</a></button></th>
         </tr>
         </thead>
         <tbody>
             <?php
-            
             $query="select * from job_information where account_id='{$curre_hr}'";
             foreach($conn->query($query) as $row){
             ?>
@@ -58,8 +88,8 @@
                 <td><?php echo $row['job_title']; ?></td>
                 <td><?php echo $row['job_date']; ?></td>
                 <td><?php echo $row['address']; ?></td>
-                <td><?php echo $row['salary']; ?></td>
-                <td><?php echo $row['desciption']; ?></td>
+                <td><?php echo "$".$row['salary']; ?></td>
+                <td><?php echo $row['level']; ?></td>
                 <td><?php echo $row['job_type']; ?></td>
                 <td>
                     <button type="button" class="btn btn-danger"><a href="update_job.php?id=<?php echo $row['job_id']; ?>">sửa</a></button>
@@ -72,6 +102,16 @@
             ?>
         </tbody>
     </table>
-</body>
+    <script type="text/javascript">
 
+    $(document).ready( function () {
+      $('#my-table3').DataTable({
+        "pageLength": 5,
+        "lengthMenu": [6 , 12 , 15 , 20 , 25, 30]
+      });
+} );
+</script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../js/jquery.dataTables.min.js"></script>
 </html>
