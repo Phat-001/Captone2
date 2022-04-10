@@ -6,19 +6,35 @@ require('../include/connection.php');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$msg = "";
 if (isset($_POST['submit_job'])){
-    $job_date=$_POST['job_date'];
+    
+    $job_date=date('Y-m-d H:i:s');
+
+    
     $address=$_POST['address'];
     $salary=$_POST['salary'];
     $level=$_POST['level'];
-    $desciption=$_POST['desciption'];
+    $description=$_POST['description'];
     $job_type=$_POST['job_type'];
     $job_title=$_POST['job_title'];
 
-    $sql = "insert into job_information (job_date,address,salary,desciption,job_type,job_title,account_id,level) values('{$job_date}','{$address}','{$salary}','{$desciption}','{$job_type}','{$job_title}','{$_SESSION['id_user']}','{$level}')";
+    $target_file = "images/logo_company/" . $_FILES["image"]["name"];
+
+    
+    // move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+
+
+    $sql = "insert into job_information (job_date,address,salary,description,job_type,job_title,account_id,level,logo) values('{$job_date}','{$address}','{$salary}','{$description}','{$job_type}','{$job_title}','{$_SESSION['id_user']}','{$level}','{$target_file}')";
+
 
     $conn->query($sql);
     header('location:index.php');
+    
+    
+  	
+  
 }
 ?>
 <!DOCTYPE html>
@@ -40,7 +56,7 @@ if (isset($_POST['submit_job'])){
     </style>
 </head>
 <body>
-<form method="POST" class="form">
+<form method="POST" class="form" action="add_job.php" enctype="multipart/form-data">
         <h2>Thêm việc làm</h2>
 
         <table class="table table-striped">
@@ -49,9 +65,10 @@ if (isset($_POST['submit_job'])){
                 <td><input type="text" value="" name="job_title" class="text-input form-control" required></td>
             </tr>
             <tr>
-                <th><label for="">Ngày:</label></th>
-                <td><input type="datetime-local" value="" name="job_date" class="text-input form-control" required></td>
+                <th><label for="">logo công ty:</label></th>
+                <td><input type="file" value="" name="image" class="text-input form-control" required></td>
             </tr>
+            
             <tr>
                 <th><label for="">Địa chỉ:</label></th>
                 <td><input type="text" value="" name="address" class="text-input form-control" required></td>
@@ -62,7 +79,7 @@ if (isset($_POST['submit_job'])){
             </tr>
             <tr>
                 <th><label for="">Mô tả công việc:</label></th>
-                <td><textarea class="form-control" rows="5" name="desciption" id="comment" required></textarea></td>
+                <td><textarea class="form-control" rows="5" name="description" id="comment" required></textarea></td>
                 
             </tr>
             <tr>

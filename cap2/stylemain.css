@@ -22,7 +22,7 @@ button>a{
     text-decoration: none;
 }
 .logo-cap2{
-    width: 118px !important;
+    width: 90px !important;
     vertical-align: none !important;
 }
 .logo-header1{
@@ -58,3 +58,16 @@ button>a{
     right: 20% !important;
     color: black;
 }
+/* modal */
+/* .modal{
+    z-index: 7749;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4)
+} */

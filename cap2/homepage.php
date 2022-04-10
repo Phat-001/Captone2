@@ -5,8 +5,7 @@
         header('location:index.php');
     }
 
-    $job_list = "select job_type,job_title,salary,address,job_date from job_information";
-    
+    $job_list = "select * from job_information order by job_date DESC limit 8";
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +32,10 @@
     </title>
     <!-- Favicon -->
 
-    <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+    <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+    <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" /> -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -44,6 +43,27 @@
 </script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
 </script><![endif]-->
+        <style>
+            .search_job_a{
+                background: #fff;
+                padding: 5px 35px;
+                border-radius: 10px;
+                box-shadow: 20px 20px 50px grey !important;
+            }
+            #search_result{
+                margin-top: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .item_job{
+                margin-top: 10px;
+            }
+            
+            .img_search{
+                width: 65px !important;
+            }
+        </style>
 </head>
 
 <body>
@@ -89,57 +109,49 @@
                         <div class="home-text">
                             <h2 class="fz40">Tìm kiếm công việc cho bạn</h2>
 
-                            <p class="color-white">Welcome to our website. IT job</p>
+                            <p class="color-white">Từ khóa nổi bật: Mobile, Web, PHP, Android, IOS,...</p>
                         </div>
                     </div>
 
                     <div class="col-lg-12">
 
-                        <div class="home-job-search-box mt20 mb20">
+                        
 
                             <form class="form-inline">
 
-                                <div class="search_option_one">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputName">
-
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                            </span>
-                                        </label>
-                                        <input type="text" class="form-control h70" id="exampleInputName"
-                                            placeholder="Job Title or Keywords">
-                                    </div>
-                                </div>
-
-                                <div class="search_option_two">
-
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail">
-
-                                        <i class="fa-solid fa-location-dot"></i>
-                                            </span>
-                                        </label>
-                                        <input type="text" class="form-control h70" id="exampleInputEmail"
-                                            placeholder="Location">
-                                    </div>
-                                </div>
-
-                                <div class="search_option_button"><button type="submit"
-                                        class="btn btn-thm btn-dark h70">Tìm kiếm</button>
-                                </div>
+                            <div class="input-group col-9">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm việc làm (lương, loại công việc,...)" aria-label="Recipient's username" id="search_job" name="search_job" aria-describedby="basic-addon2">
+                                <!-- <div class="input-group-append">
+                                    <button class="btn btn-success" type="button">Tìm kiếm</button>
+                                </div> -->
+                            </div>
+                            <div class="input-group col-3">
+                                
+                                <select style="margin-left: 5px;" class="custom-select" id="address_search" name="address_search">
+                                    <option value=""> Thành phố</option>
+                                    <option value="Ha Noi">Ha Noi</option>
+                                    <option value="Da Nang">Da Nang</option>
+                                    <option value="Binh Dinh">Binh Dinh</option>
+                                    <option value="Ho Chi Minh">Ho Chi Minh</option>
+                                </select>
+                               
+                            </div>
                             </form>
                         </div>
 
-                        <p class="color-white">Từ khóa nổi bật: DesignCer, Developer, Web, IOS, PHP, Senior, Engineer
-                        </p>
+                        <!-- <p class="color-white">Từ khóa nổi bật: Mobile, DesignCer, Developer, Web, IOS, PHP, Senior, Engineer
+                        </p> -->
+                    <div class="row">
+                        <div id="search_result" class="col-12">
+                            
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Features Job List Design -->
         <section class="popular-job pb30">
-
             <div class="container">
 
                 <div class="row">
@@ -171,25 +183,46 @@
 
                                             <div class="fj_post home6">
 
+                                                <a href="detail_job.php?hr_id=<?php echo $value['account_id'];?>&job_id=<?php echo $value['job_id']?>">
                                                 <div class="details">
 
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/1.jpg" alt="1.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0"><?php echo $value['job_type'];?></h5>
-                                                    <h4 class="mt0 pt0"><?php echo $value['job_title'];?></h4>
+<div class="thumb fn-smd"><img class="img-fluid"
+        src="<?php echo $value['logo'];?>" alt="1.jpg">
+</div>
+<h5 class="job_chedule text-thm2 mt0"><?php echo $value['job_type'];?></h5>
+<h4 class="mt0 pt0"><?php echo $value['job_title'];?></h4>
 
-                                                    <p class="text-thm4">$<?php echo $value['salary'];?></p>
+<p class="text-thm4">$<?php echo $value['salary'];?></p>
 
-                                                    <i class="fa-solid fa-location-dot"></i>
-                                                    </span><a href="#"><?php echo $value['address'];?></a>
-                                                    <p>Ngày đăng:<?php 
-                                                        
-                                                        $date = date("Y-m-d H:i:s",strtotime(str_replace('/','/',$value['job_date'])));
-                                                        echo $date;
-                                                        
-                                                        ?> </p>
-                                                </div>
+<i class="fa-solid fa-location-dot"></i>
+</span><a href="#"><?php echo $value['address'];?></a>
+<p><?php 
+    $start_time=$value['job_date'];
+    // $start_end = date('Y-m-d H:i:s');
+    $a = getdate(strtotime($start_time));
+    // $timeStamp = $start_time->getTimestamp();
+    // $k = $start_end - $start_time;
+    // echo $a[0];
+    $b = time();
+    $seconds = $b - $a[0];
+    $minutes = floor($seconds / 60);
+    $hours = floor($minutes / 60);
+    $days = floor($hours / 24);
+    $months = floor($days / 30);
+    if($seconds <= 60){
+        echo $seconds. " giây trước";
+    }else if($minutes <=60){
+        echo $minutes. " phút trước";
+    }else if($hours <=24){
+        echo $hours. " giờ trước";
+    }else if($days <=30){
+        echo $days. " ngày trước";
+    }else if($months <= 31){
+        echo $months. " tháng trước";
+    }
+    ?></p>
+</div>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -543,7 +576,7 @@
                         <div class="copyright-widget tac-smd">
 
                             <p>© 2022 Capstone 2. All Rights <a href="http://www.bootstrapmb.com/"
-                                    title="bootstrapmb">Team 21</a>.</p>
+                                target="_blank"    title="bootstrapmb">Team 21</a>.</p>
                         </div>
                     </div>
 
@@ -560,13 +593,16 @@
                 </div>
             </div>
         </section><a class="scrollToHome text-thm" href="#"><i class="flaticon-rocket-launch"></i></a>
+        
     </div>
     <!-- Wrapper End -->
-    <script type="text/javascript" src="./assets/js/jquery-3.3.1.js">
+    
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script type="text/javascript" src="./assets/js/home-page.js">
     </script>
-    <script type="text/javascript" src="./assets/js/jquery-migrate-3.0.0.min.js">
-    </script>
-   
     <script type="text/javascript" src="./assets/js/bootstrap.min.js">
     </script>
     

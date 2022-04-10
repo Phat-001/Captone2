@@ -92,8 +92,8 @@
                 <td><?php echo $row['level']; ?></td>
                 <td><?php echo $row['job_type']; ?></td>
                 <td>
-                    <button type="button" class="btn btn-danger"><a href="update_job.php?id=<?php echo $row['job_id']; ?>">sửa</a></button>
-                    <button type="button" class="btn btn-warning"><a href="delete_job.php?id=<?php echo $row['job_id']; ?>">xóa</a></button>
+                    <button type="button" class="btn btn-danger"><a href="update_job.php?ida=<?php echo $row['job_id']; ?>">sửa</a></button>
+                    <button type="button" class="btn btn-warning"><a href="delete_job.php?ida=<?php echo $row['job_id']; ?>">xóa</a></button>
                 </td>
                 
             </tr>
