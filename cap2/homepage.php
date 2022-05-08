@@ -4,8 +4,11 @@
     if(!isset($_SESSION['username'])){
         header('location:index.php');
     }
+    
+    
 
     $job_list = "select * from job_information order by job_date DESC limit 8";
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,13 @@
     <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+    <!-- link slick slider -->
+    
+
+    <!-- end slick slider -->
+
+
     <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" /> -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,6 +73,19 @@
             .img_search{
                 width: 65px !important;
             }
+            .profile_icon{
+                position: absolute !important;
+                top: 10% !important;
+                right: 10px !important;
+                color: black;
+            }
+            .hover-icon{
+                color: 422e2e;
+                font-size: 34px;
+            }
+            .hover-icon:hover{
+                color: #fff;
+            }
         </style>
 </head>
 
@@ -81,8 +104,25 @@
                 <li></li>
             </ul>
         </div>
-        <span class="guess_name">hi! <?php echo $_SESSION['name'];?> </span>
+        <span class="guess_name"><img class="avata_img" src="./images/avata/<?php 
+$stmt = $conn->prepare("select * from account where account_id = ?");
+$stmt->bind_param("s", $_SESSION["id_user"]);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
+$id_account = $data ? $data['account_id'] : null;
+
+
+$stmt = $conn->prepare("select * from account where account_id = ?");
+$stmt->bind_param("s", $id_account);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
+$value = $data ? $data['img'] : null;
+echo  $value;
+
+?>" alt=""> <?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];}?> </span>
             <a href="logout.php" id="logoutss"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+            <span class="profile_icon" style=""><a class="hover-icon" href="profile.php?"><i class="fa-solid fa-address-card"></i></a></span>
+            
         
         
     </div>
@@ -110,6 +150,9 @@
                             <h2 class="fz40">Tìm kiếm công việc cho bạn</h2>
 
                             <p class="color-white">Từ khóa nổi bật: Mobile, Web, PHP, Android, IOS,...</p>
+                            <p>
+                                
+                            </p>
                         </div>
                     </div>
 
@@ -187,7 +230,7 @@
                                                 <div class="details">
 
 <div class="thumb fn-smd"><img class="img-fluid"
-        src="<?php echo $value['logo'];?>" alt="1.jpg">
+        src="images/logo_company/<?php echo $value['logo'];?>" alt="1.jpg">
 </div>
 <h5 class="job_chedule text-thm2 mt0"><?php echo $value['job_type'];?></h5>
 <h4 class="mt0 pt0"><?php echo $value['job_title'];?></h4>
@@ -374,7 +417,7 @@
                     <div class="col-lg-12">
 
                         <div class="ulockd-main-title">
-                            <h3 class="mt0">Popular Job Categories</h3>
+                            <h3 class="mt0">Bài viết nổi bật</h3>
                         </div>
                     </div>
                 </div>
@@ -387,12 +430,6 @@
                             style="background-image: url(./assets/images/service/1.jpg);">
 
                             <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-pen">
-                                    </span>
-                                </div>
 
                                 <div class="details">
                                     <h5>Design, Art & Multimedia</h5>
@@ -410,12 +447,7 @@
 
                             <div class="overlay">
 
-                                <div class="icon">
-
-                                    <span class="flaticon-mortarboard">
-                                    </span>
-                                </div>
-
+                                
                                 <div class="details">
                                     <h5>Education Training</h5>
 
@@ -432,11 +464,7 @@
 
                             <div class="overlay">
 
-                                <div class="icon">
-
-                                    <span class="flaticon-bars">
-                                    </span>
-                                </div>
+                               
 
                                 <div class="details">
                                     <h5>Accounting / Finance</h5>
@@ -560,9 +588,10 @@
         </section>
         <!-- Popular Job Categories -->
        
-       
+       <!-- slick slider -->
+        <section></section>
         
-        
+       <!-- end slick slider -->
         
         <!-- Our Footer Bottom Area -->
         <section class="footer_bottom_area home6 p0">

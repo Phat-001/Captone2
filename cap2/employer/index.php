@@ -17,6 +17,15 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- Responsive stylesheet -->
+
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+
+
 <link rel="stylesheet" href="../stylemain.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="../js/jquery.dataTables.min.css">
@@ -60,7 +69,7 @@
     font-size: 34px;
     color: rgb(27, 46, 32);">Rabbit Job</span></a>
     <div class="item">
-    <span>hi! <?php echo $_SESSION['name'];?></span>
+    <span>Chào! <?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];}?></span>
       <a href="../logout.php" style="color: black; text-decoration:none;"><i class="fa-solid fa-right-from-bracket"></i>đăng xuất</a>
     </div>
     </div>
@@ -93,7 +102,31 @@
                 <td><?php echo $row['job_type']; ?></td>
                 <td>
                     <button type="button" class="btn btn-danger"><a href="update_job.php?ida=<?php echo $row['job_id']; ?>">sửa</a></button>
-                    <button type="button" class="btn btn-warning"><a href="delete_job.php?ida=<?php echo $row['job_id']; ?>">xóa</a></button>
+                    
+
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#xampleModal">
+                            Xóa
+                    </button>
+
+                    <div class="modal fade" id="xampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa công việc</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                Bạn có chắc muốn xóa công việc này?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <a type="submit" name="deletePost" href="delete_job.php?ida=<?php echo $row['job_id']; ?>" class="btn btn-primary">Xóa</a>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
                 </td>
                 
             </tr>
@@ -102,6 +135,60 @@
             ?>
         </tbody>
     </table>
+
+
+
+    <h2>Những ứng viên đã nộp CV</h2>
+    <table class="table table-striped" id="cv-file">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID job</th>
+            <th scope="col">Tên ứng viên</th>
+            <th scope="col">Tên file</th>
+            <th scope="col">Tải về</th>
+            <th scope="col">Xóa</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>23</td>
+                <td>Phan Văn Tài</td>
+                <td>Intern_php.pdf</td>
+                <td><a href="">download</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>Phan Văn Tín</td>
+                <td>Intern_Node.pdf</td>
+                <td><a href="">download</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>Phan Văn Toàn</td>
+                <td>Intern_php.pdf</td>
+                <td><a href="">download</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td>Phan Văn Tuấn</td>
+                <td>Intern_php.pdf</td>
+                <td><a href="">download</a></td>
+                <td><a href="">Xóa</a></td>
+            </tr>
+            <?php
+            
+            ?>
+        </tbody>
+    </table>
+    
+
+
+
+
     <script type="text/javascript">
 
     $(document).ready( function () {
@@ -109,7 +196,15 @@
         "pageLength": 5,
         "lengthMenu": [6 , 12 , 15 , 20 , 25, 30]
       });
+      
 } );
+$(document).ready(function(){
+    $('#cv-file').DataTable({
+        "pageLength": 5,
+        "lengthMenu": [6 , 12 , 15 , 20 , 25, 30]
+      });
+});
+
 </script>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -10,32 +10,29 @@ $msg = "";
 if (isset($_POST['submit_job'])){
     
     $job_date=date('Y-m-d H:i:s');
-
-    
     $address=$_POST['address'];
     $salary=$_POST['salary'];
     $level=$_POST['level'];
     $description=$_POST['description'];
     $job_type=$_POST['job_type'];
     $job_title=$_POST['job_title'];
-
-    $target_file = "images/logo_company/" . $_FILES["image"]["name"];
+    if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0){
+        $filename = $_FILES["image"]["name"];
+        
+        move_uploaded_file($_FILES["image"]["tmp_name"], "../images/logo_company/" . $filename);
+    }
+    $target_file = $_FILES["image"]["name"];
 
     
     // move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-    move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
+    
 
 
     $sql = "insert into job_information (job_date,address,salary,description,job_type,job_title,account_id,level,logo) values('{$job_date}','{$address}','{$salary}','{$description}','{$job_type}','{$job_title}','{$_SESSION['id_user']}','{$level}','{$target_file}')";
-
-
     $conn->query($sql);
     header('location:index.php');
-    
-    
-  	
-  
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,6 +108,7 @@ if (isset($_POST['submit_job'])){
         </table>
         
         </form>
+        
 </body>
 </html>
 

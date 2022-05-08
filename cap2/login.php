@@ -27,7 +27,7 @@ require('./include/connection.php');
             if($rows==1){
             $_SESSION['username'] = $username;
             $_SESSION['name']= $row['name'];
-    
+            $_SESSION['img']= $row['img'];
             $_SESSION['user_role']= $row['role'];
             $_SESSION['id_user']= $row['account_id'];
                 // Redirect user to index.php

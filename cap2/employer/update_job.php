@@ -18,12 +18,12 @@ if (isset($_POST['submit_update_job'])) {
     $job_type = $_POST['job_type'];
     $job_title = $_POST['job_title'];
     $level = $_POST['level'];
-    $target_dir = "images/logo_company/";
-    $image = basename($_FILES["image"]["name"]);
-    $target_file = $target_dir . $image;
 
-    if (empty($image)) {
+    if (empty($_FILES["image"]["name"])) {
         $target_file = $row['logo'];
+    }else if(isset($_FILES["image"])){
+        $target_file = $_FILES["image"]["name"];
+        move_uploaded_file($_FILES["image"]["tmp_name"], "../images/logo_company/" . $target_file);
     }
     // move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     // move_uploaded_file($_FILES['image']['tmp_name'], $target_file);
@@ -42,9 +42,6 @@ if (isset($_POST['submit_update_job'])) {
 
     $conn->close();
 }
-
-
-
 ?>
 
 

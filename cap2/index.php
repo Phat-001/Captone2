@@ -13,9 +13,8 @@
     <meta name="keywords" content="candidates, career, employment, freelance, glassdoor, Human Resource Management, indeed, job board, job listing, job portal, job postings, jobs, listings, recruitment, resume">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
-
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="stylemain.css">
     
@@ -114,7 +113,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" name="password" required>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" name="password">
                                 </div>
 
                                 <div class="form-group">
@@ -232,8 +231,7 @@
     </script>
     <script type="text/javascript" src="./assets/js/progressbar.js">
     </script>
-    <script type="text/javascript" src="./assets/js/slider.js">
-    </script>
+    
     <script type="text/javascript" src="./assets/js/timepicker.js">
     </script>
     <script type="text/javascript" src="./assets/js/wow.min.js">

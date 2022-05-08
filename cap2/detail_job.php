@@ -7,7 +7,6 @@
     $hr_id = $_GET['hr_id'];
     //get user hiện tại muốn ứng tuyển
     $user_id = $_SESSION['id_user'];
-    
     $job_information = "select * from job_information where job_id = '{$job_id}'";
     
     $query = mysqli_query($conn, $job_information);
@@ -16,7 +15,7 @@
 
     $job_information_other = "select * from job_information where account_id = '{$hr_id}'";
     
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -31,20 +30,20 @@
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylemain.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Responsive stylesheet -->
 
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <!-- Title -->
     <title>Việc làm
     </title>
     <!-- Favicon -->
 
-    <!-- <link href="assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" /> -->
+    <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" /> -->
 
-    <!-- <link href="assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" /> -->
+    <!-- <link href="./assets/images/favicon.ico" sizes="128x128" rel="shortcut icon" /> -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -57,7 +56,7 @@
 <body>
 <div class="header-login" id="fixed-top-menu" style="box-shadow:none !important; height:80px !important; ">
     <div class="logo-header1">
-                <a href="homepage.php"><img src="./assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt="" ><span style="line-height: 80px;
+                <a href="homepage.php"><img src="././assets/images/rabbit/logo-cap2.png" class="logo-cap2" alt="" ><span style="line-height: 80px;
     font-size: 34px;
     color: rgb(27, 46, 32);">Rabbit Job</span></a>
             </div>
@@ -69,9 +68,22 @@
                 <li></li>
             </ul>
         </div>
-        <span class="guess_name" style="color: #fff;"><span style="color: black;">Chào!</span> <?php echo $_SESSION['name'];?> </span>
+        <span class="guess_name"><img class="avata_img" src="./images/avata/<?php 
+$stmt = $conn->prepare("select * from account where account_id = ?");
+$stmt->bind_param("s", $_SESSION["id_user"]);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
+$id_account = $data ? $data['account_id'] : null;
+
+$stmt = $conn->prepare("select * from account where account_id = ?");
+$stmt->bind_param("s", $id_account);
+$stmt->execute();
+$data = $stmt->get_result()->fetch_assoc();
+$value = $data ? $data['img'] : null;
+echo  $value;
+
+?>" alt=""> <?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];}?> </span>
             <a href="logout.php" id="logoutss"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
-        
         
     </div>
     <!-- <div class="modal">
@@ -89,9 +101,9 @@
 
         
         <!-- Job Single Page Section -->
-        <section class="job_single_v5_banner mt-30" style="background-image: url('./assets/images/rabbit/banner.jpg') ;"></section>
+        <section class="job_single_v5_banner mt-30" style="background-image: url('././assets/images/background/banner1.jpg') ;"></section>
         <!-- Job Single Page Section -->
-        <section class="bgc-fa pt40" style="background: #3a49cf33 !important;">
+        <section class="bgc-fa pt40" style="background: #fff !important;">
 
             <div class="container">
 
@@ -106,7 +118,7 @@
                                 <div class="candidate_personal_info mbt45 style2 job_singe_v5">
 
                                     <div class="thumb one text-center"><img class="img-fluid rounded"
-                                            src="<?php echo $detail['logo']?>" alt="cl1.jpg">
+                                            src="images/logo_company/<?php echo $detail['logo']?>" alt="cl1.jpg">
                                     </div>
 
                                     <div class="details">
@@ -127,10 +139,13 @@
 
                         <div class="row job_meta_list mt30 mb30">
 
-                            <div class="col-sm-4 col-lg-4"><button class="btn btn-block btn-thm">Ứng tuyển
+                            <div class="col-sm-4 col-lg-4">
+                                <a href="submit_cv.php">
+                                <button class="btn btn-block btn-thm">Ứng tuyển
 
-                            <i class="fa-solid fa-circle-arrow-left"></i>
-                                    </span></button>
+<i class="fa-solid fa-circle-arrow-left"></i>
+        </span></button>
+                                </a>
                             </div>
 
                             
@@ -142,10 +157,11 @@
 
                                 <div class="candidate_about_info style2 mt10">
                                     <h4 class="fz20 mb30">Mô tả công việc</h4>
-
+                                    <p>Thể loại: <?php echo $detail['job_type']?></p>
+                                    <p>Yêu cầu cấp bậc : <?php echo $detail['level']?></p>
                                     <p class="mb30"><?php echo str_replace("\n","<br />", $detail['description'])?></p>
-
-                                    <p class="mb40">The UX/UI Designer will be working with a world-class team of
+                                    
+                                    <p class="mb40">The Job will be working with a world-class team of
                                         designers, engineers, and product mana gers to develop innovative user
                                         experiences that will shape the industry’s pioneering products.</p>
 
@@ -186,7 +202,22 @@
                                     <p class="mb20">-- You enjoy a fast paced and dynamic working environment</p>
                                 </div>
                             </div>
+                            <div class="banner">
+                                <div class="img-banner">
+                                    <img src="./assets/images/home/2.jpg" alt="">
+                                </div>
+                                <p class="mb20">-- You enjoy a fast paced and dynamic working environment</p>
+                                <p>-- Excellent communicator who has conviction to champion of view, but can also
+                                        successfully collabo rate with others</p>
+                                        <p>-- Through your online portfolio, you are able to share your UX/UI design
+                                        capabilities by showcasing your design chops and demonstrates originality,
+                                        innovation and strong problem solving skills</p>
+                                <div class="img-banner" style="margin-top: 10px;">
+                                    <img src="./assets/images/home/3.jpg" alt="">
+                                </div>
+                            </div>
 
+                            
                             <div class="col-lg-12">
 
                                 <div class="my_resume_eduarea">
@@ -194,7 +225,7 @@
                                 </div>
                             </div>
 
-                            
+                           
 
                             <div class="col-lg-12">
                                 <?php foreach($conn->query($job_information_other) as $row){?>
@@ -205,11 +236,11 @@
     <h5 class="job_chedule text-thm2"><?php echo $row['job_type']?></h5>
 
     <div class="thumb fn-smd"><img class="img-fluid"
-            src="<?php echo $row['logo']?>" alt="3.jpg">
+            src="images/logo_company/<?php echo $row['logo']?>" alt="3.jpg">
     </div>
     <h4><?php echo $row['job_title']?></h4>
 
-    <p><?php echo $row['salary'];?></p>
+    <p>$<?php echo $row['salary'];?></p>
     <ul class="featurej_post">
         <li class="list-inline-item">
 
@@ -262,42 +293,42 @@
         </section><a class="scrollToHome text-thm" href="#"><i class="flaticon-rocket-launch"></i></a>
     </div>
     <!-- Wrapper End -->
-    <script type="text/javascript" src="assets/js/jquery-3.3.1.js">
+    <script type="text/javascript" src="./assets/js/jquery-3.3.1.js">
     </script>
-    <script type="text/javascript" src="assets/js/jquery-migrate-3.0.0.min.js">
+    <script type="text/javascript" src="./assets/js/jquery-migrate-3.0.0.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/popper.min.js">
+    <script type="text/javascript" src="./assets/js/popper.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/bootstrap.min.js">
+    <script type="text/javascript" src="./assets/js/bootstrap.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/jquery.mmenu.all.js">
+    <script type="text/javascript" src="./assets/js/jquery.mmenu.all.js">
     </script>
-    <script type="text/javascript" src="assets/js/ace-responsive-menu.js">
+    <script type="text/javascript" src="./assets/js/ace-responsive-menu.js">
     </script>
-    <script type="text/javascript" src="assets/js/bootstrap-select.min.js">
+    <script type="text/javascript" src="./assets/js/bootstrap-select.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/snackbar.min.js">
+    <script type="text/javascript" src="./assets/js/snackbar.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/simplebar.js">
+    <script type="text/javascript" src="./assets/js/simplebar.js">
     </script>
-    <script type="text/javascript" src="assets/js/parallax.js">
+    <script type="text/javascript" src="./assets/js/parallax.js">
     </script>
-    <script type="text/javascript" src="assets/js/scrollto.js">
+    <script type="text/javascript" src="./assets/js/scrollto.js">
     </script>
-    <script type="text/javascript" src="assets/js/jquery-scrolltofixed-min.js">
+    <script type="text/javascript" src="./assets/js/jquery-scrolltofixed-min.js">
     </script>
-    <script type="text/javascript" src="assets/js/jquery.counterup.js">
+    <script type="text/javascript" src="./assets/js/jquery.counterup.js">
     </script>
-    <script type="text/javascript" src="assets/js/wow.min.js">
+    <script type="text/javascript" src="./assets/js/wow.min.js">
     </script>
-    <script type="text/javascript" src="assets/js/progressbar.js">
+    <script type="text/javascript" src="./assets/js/progressbar.js">
     </script>
-    <script type="text/javascript" src="assets/js/slider.js">
+    <script type="text/javascript" src="./assets/js/slider.js">
     </script>
-    <script type="text/javascript" src="assets/js/timepicker.js">
+    <script type="text/javascript" src="./assets/js/timepicker.js">
     </script>
     <!-- Custom script for all pages -->
-    <script type="text/javascript" src="assets/js/script.js">
+    <script type="text/javascript" src="./assets/js/script.js">
     </script>
 </body>
 

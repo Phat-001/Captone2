@@ -26,7 +26,7 @@ echo '<script>alert("Email or username already exists")</script>';
 //             $query = "INSERT into `account` (username,password,phone,email,address,role,name)
 // VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
             $conn->query($query);
-          echo '<script>alert("Sign Up Success")</script>';
+          echo '<script>alert("Đăng ký thành công")</script>';
     }
 }
 /**
@@ -48,7 +48,7 @@ echo '<script>alert("Email or username already exists")</script>';
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="stylemain.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Responsive stylesheet -->
 
     <link rel="stylesheet" href="./assets/css/responsive.css">
@@ -67,6 +67,14 @@ echo '<script>alert("Email or username already exists")</script>';
 </script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
 </script><![endif]-->
+<style>
+    .trolai{
+        position: absolute;
+    }
+    .sign_up_form{
+        position: relative;
+    }
+</style>
 </head>
 
 <body>
@@ -129,10 +137,10 @@ echo '<script>alert("Email or username already exists")</script>';
 
                     <div class="col-sm-12 col-lg-6">
                             <div class="sign_up_form">
-
+                            <i class="fa-solid fa-angle-left"></i><a href="index.php" class="trolai">Trở lại</a>
                             <div class="heading">
                                 <h3 class="text-center">Tạo tài khoản</h3>
-
+                               
                                 
                             </div>
                             
@@ -145,6 +153,7 @@ echo '<script>alert("Email or username already exists")</script>';
 
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="username" id="exampleInputName1" placeholder="Tài khoản" required>
+                                            
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="Mật khẩu" required>

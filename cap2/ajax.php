@@ -19,7 +19,7 @@
                             <a href="detail_job.php?hr_id=<?php echo $row['account_id'];?>&job_id=<?php echo $row['job_id']?>">
                                 <div class="details " style="display: flex;">
                                 <div class="left">
-                                <img src="<?php echo $row['logo'];?>" class="img_search" alt="">
+                                <img src="images/logo_company/<?php echo $row['logo'];?>" class="img_search" alt="">
                                 </div>
                                 <div class="right">
                                 <h4 class="mt0 pt0"><?php echo $row['job_title']?></h4>

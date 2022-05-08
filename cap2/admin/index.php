@@ -57,7 +57,7 @@
     font-size: 34px;
     color: rgb(27, 46, 32);">Rabbit Job</span></a>
     <div class="item">
-    <span>hi! <?php echo $_SESSION['name'];?></span>
+    <span>hi! <?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];}?></span>
       <a href="../logout.php" style="color: black; text-decoration:none;"><i class="fa-solid fa-right-from-bracket"></i>đăng xuất</a>
     </div>
             </div>
@@ -115,7 +115,30 @@
       <td><?php echo $row['username']?></td>
       <td>
         <button type="button" class="btn btn-danger"><a href="update_account.php?user_id=<?php echo $row['account_id']; ?>">sửa</a></button>
-        <button type="button" class="btn btn-warning"><a href="delete_account.php?user_id=<?php echo $row['account_id']; ?>">xóa</a></button>
+        
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#xampleModal">
+                Xóa
+        </button>
+
+        <div class="modal fade" id="xampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Bạn có chắc muốn xóa tài khoản này
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                      <a type="submit" name="deletePost" href="delete_account.php?user_id=<?php echo $row['account_id']; ?>" class="btn btn-primary">Xóa</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
       </td>
     </tr>
     <?php }?>
