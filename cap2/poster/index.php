@@ -56,8 +56,7 @@ $result = mysqli_query($conn, $q);
             </div>
             <div class="card-body overflow-hidden">
 
-              <p class="card-text"><?= $row["body"] ?>
-              </p>
+              
             </div>
             <div class="card-footer">
               <?php

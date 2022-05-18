@@ -9,6 +9,7 @@ require('./include/connection.php');
         $phone_number = $_POST["phone_number"];
         $address = $_POST["address"];
         $full_name = $_POST["full_name"];
+        $unique_id= rand(time(), 10000);
         $role = 3;
         // Kiểm tra username hoặc email có bị trùng hay không
 $sql = "SELECT * FROM account WHERE username = '$username' OR email = '$email'";
@@ -22,7 +23,7 @@ if (mysqli_num_rows($result) > 0)
 // header('Location: index.php');
 echo '<script>alert("Email or username already exists")</script>';
 }else{
-            $query = "INSERT INTO account(username,password,phone,email,address,role,name) VALUES('{$username}','".md5($password)."','{$phone_number}','{$email}', '{$address}','{$role}','{$full_name}')";
+            $query = "INSERT INTO account(username,password,phone,email,address,role,name,unique_id) VALUES('{$username}','".md5($password)."','{$phone_number}','{$email}', '{$address}','{$role}','{$full_name}','{$unique_id}')";
 //             $query = "INSERT into `account` (username,password,phone,email,address,role,name)
 // VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
             $conn->query($query);

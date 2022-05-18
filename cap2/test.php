@@ -1,9 +1,3 @@
 <?php
-    
-    $time_start = getdate();
-
-    echo date("d-m-Y");
-    
-   
-    
+    echo rand(time(), 10000); 
 ?>

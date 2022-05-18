@@ -119,6 +119,7 @@ $email=$_POST['email'];
 $phone=$_POST['phone'];
 $address=$_POST['address'];
 $role=$_POST['role'];
+$unique_id= rand(time(), 10000);
 
 
 
@@ -128,7 +129,7 @@ if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "UPDATE `account` SET name='{$name}', email='{$email}', phone='{$phone}', address='{$address}', role='{$role}' WHERE account_id='{$id}'";
+$sql = "UPDATE `account` SET name='{$name}', email='{$email}', phone='{$phone}', address='{$address}', role='{$role}', unique_id='{$unique_id}' WHERE account_id='{$id}'";
 
 if ($conn->query($sql) === TRUE) {
     echo '<script>alert("cập nhật thành công")</script>';

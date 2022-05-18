@@ -36,7 +36,7 @@ if (isset($_POST["createPost"])) {
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-md-2 col-sm-10 offset-sm-1 mt-3">
+    <div class="col-12 ">
 
       <!-- Alets -->
       <?php if (sizeof($errors)) : ?>
@@ -64,12 +64,15 @@ if (isset($_POST["createPost"])) {
 
             <div class="form-group">
               <label for="postBody">Nội dung:</label>
-              <textarea name="postBody" class="form-control" rows="6" id="postBody" placeholder="Write a Post.."
+              <textarea name="postBody" class="form-control" rows="6" id="postBody2" placeholder="Viết nội dung.."
                 required></textarea>
               <div class="invalid-feedback">
               Không được bỏ trống
               </div>
             </div>
+            
+            
+
 
             <div class="form-group">
               <div class="form-check form-check-inline">
@@ -101,6 +104,20 @@ if (isset($_POST["createPost"])) {
     </div>
   </div>
 </div>
+<script src="https://cdn.tiny.cloud/1/e2sfcz5xv9m4e0g5web5ukrutgy2jae7r0ucyl83i91acc2h/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+  tinymce.init({
+  selector: '#postBody2',
+  height: 500,
+  menubar: false,
+  plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+});
+</script>
 
 
 <?php require_once 'includes/footer.inc.php';

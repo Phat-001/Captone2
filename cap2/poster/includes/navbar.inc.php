@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-success">
+
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #79b530;
+    height: 80px;">
   <div class="container">
  
-    <a class="navbar-brand" href="index.php"> Rabbit Job</a>
+    <a class="navbar-brand" href="index.php"> <img src="./logo-cap2.png" alt=""> Rabbit Job</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

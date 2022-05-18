@@ -99,7 +99,7 @@ function findWhere($table, $field, $value, ?int $visible = 1, ?int $userId = nul
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,700i,800&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.19.1/ui/trumbowyg.min.css">
   <!--  Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Font Awesome -->
@@ -122,7 +122,7 @@ function findWhere($table, $field, $value, ?int $visible = 1, ?int $userId = nul
               background: #efefef;
               color: black;
             }
-
+            
             @media only screen and (max-width: 767.98px) {
               .nav-link {
                 text-align: center;

@@ -140,7 +140,7 @@ echo  $value;
                         <div class="row job_meta_list mt30 mb30">
 
                             <div class="col-sm-4 col-lg-4">
-                                <a href="submit_cv.php">
+                                <a href="submit_cv.php?account_id=<?php echo $user_id;?>&hr_id=<?php echo $detail['account_id']?>&job_id=<?php echo $_GET['job_id']?>">
                                 <button class="btn btn-block btn-thm">Ứng tuyển
 
 <i class="fa-solid fa-circle-arrow-left"></i>

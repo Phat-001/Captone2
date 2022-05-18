@@ -5,8 +5,6 @@
         header('location:index.php');
     }
     
-    
-
     $job_list = "select * from job_information order by job_date DESC limit 8";
 
 ?>
@@ -41,7 +39,6 @@
 
     <!-- link slick slider -->
     
-
     <!-- end slick slider -->
 
 
@@ -275,139 +272,17 @@ echo  $value;
                                     </div>
                                 </div>
 
-                                <!-- <div class="tab-pane fade col-lg-12" id="pills-profile" role="tabpanel"
-                                    aria-labelledby="pills-profile-tab">
-
-                                    <div class="row">
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/1.jpg" alt="1.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">JEB Product Sales Specialist</h4>
-
-                                                    <p class="text-thm4">Wiggle CRC</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/2.jpg" alt="2.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Part Time</h5>
-                                                    <h4 class="mt0 pt0">General Ledger Accountant</h4>
-
-                                                    <p class="text-thm4">Robert Half Finance & Accounting</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">RG40, Wokingham</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/3.jpg" alt="3.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">Junior Digital Graphic Designer</h4>
-
-                                                    <p class="text-thm4">Parkside Recruitment - Uxbridge Finance</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">New Denham, UB8 1JG</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/4.jpg" alt="4.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">UX/UI Designer</h4>
-
-                                                    <p class="text-thm4">NonStop Recruitment Ltd</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/1.jpg" alt="1.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Full Time</h5>
-                                                    <h4 class="mt0 pt0">JEB Product Sales Specialist</h4>
-
-                                                    <p>Wiggle CRC</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-lg-6">
-
-                                            <div class="fj_post home6">
-
-                                                <div class="details">
-
-                                                    <div class="thumb fn-smd"><img class="img-fluid"
-                                                            src="./assets/images/partners/2.jpg" alt="2.jpg">
-                                                    </div>
-                                                    <h5 class="job_chedule text-thm2 mt0">Part Time</h5>
-                                                    <h4 class="mt0 pt0">General Ledger Accountant</h4>
-
-                                                    <p class="text-thm4">Robert Half Finance & Accounting</p>
-
-                                                    <span class="flaticon-location-pin">
-                                                    </span><a href="#">Bothell, WA, USA</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+        <?php
+            $q = "SELECT * FROM `posts` WHERE `visible`=1 ORDER BY `created_at` DESC Limit 8";
+            $results = mysqli_query($conn, $q);
+        ?>
         <section class="popular-job home6 pb30">
 
             <div class="container">
@@ -423,166 +298,27 @@ echo  $value;
                 </div>
 
                 <div class="row">
+                    <?php if(mysqli_num_rows($results) > 0){?>
+                        <?php while($row1 = mysqli_fetch_assoc($results)):?>
+                            <div class="col-sm-6 col-lg-3">
+                            <a href="detail_post.php?post_id=<?php echo $row1['post_id'];?>">
+<div class="icon_hvr_img_box sbbg1 home6"
+    style="background-image: url(./assets/images/service/3.jpg);">
 
-                    <div class="col-sm-6 col-lg-3">
+    <div class="overlay">
 
-                        <div class="icon_hvr_img_box sbbg1 home6"
-                            style="background-image: url(./assets/images/service/1.jpg);">
+        <div class="details">
+            <h5><?php echo $row1['title']?></h5>
 
-                            <div class="overlay">
-
-                                <div class="details">
-                                    <h5>Design, Art & Multimedia</h5>
-
-                                    <p>22 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg2 home6"
-                            style="background-image: url(./assets/images/service/2.jpg);">
-
-                            <div class="overlay">
-
-                                
-                                <div class="details">
-                                    <h5>Education Training</h5>
-
-                                    <p>48 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg3 home6"
-                            style="background-image: url(./assets/images/service/3.jpg);">
-
-                            <div class="overlay">
-
-                               
-
-                                <div class="details">
-                                    <h5>Accounting / Finance</h5>
-
-                                    <p>97 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg4 home6"
-                            style="background-image: url(./assets/images/service/4.jpg);">
-
-                            <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-interview">
-                                    </span>
-                                </div>
-
-                                <div class="details">
-                                    <h5>Human Resource</h5>
-
-                                    <p>17 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg5 home6"
-                            style="background-image: url(./assets/images/service/5.jpg);">
-
-                            <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-antenna">
-                                    </span>
-                                </div>
-
-                                <div class="details">
-                                    <h5>Telecommunications</h5>
-                                    <p>60 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg6 home6"
-                            style="background-image: url(./assets/images/service/6.jpg);">
-
-                            <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-food">
-                                    </span>
-                                </div>
-
-                                <div class="details">
-                                    <h5>Restaurant / Food Service</h5>
-
-                                    <p>22 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg7 home6"
-                            style="background-image: url(./assets/images/service/7.jpg);">
-
-                            <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-customer-support">
-                                    </span>
-                                </div>
-
-                                <div class="details">
-                                    <h5>Construction / Facilities</h5>
-
-                                    <p>05 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-3">
-
-                        <div class="icon_hvr_img_box sbbg8 home6"
-                            style="background-image: url(./assets/images/service/8.jpg);">
-
-                            <div class="overlay">
-
-                                <div class="icon">
-
-                                    <span class="flaticon-care">
-                                    </span>
-                                </div>
-
-                                <div class="details">
-                                    <h5>Health</h5>
-
-                                    <p>10 Open Positions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <p></p>
+            <p>Đọc bài viết</p>
+        </div>
+    </div>
+</div>
+</a>
+</div>
+                        <?php endwhile;?>
+                    <?php }?>
                 </div>
             </div>
         </section>

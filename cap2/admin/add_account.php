@@ -24,8 +24,9 @@ if (isset($_POST['submit_account'])){
     $phone=$_POST['phone'];
     $address=$_POST['address'];
     $role=$_POST['role'];
+    $unique_id= rand(time(), 10000);
 
-    $sql = "insert into account (username,password,name,phone,address,role,email) values('{$username}','".md5($password)."','{$name}','{$phone}','{$address}','{$role}','{$email}')";
+    $sql = "insert into account (username,password,name,phone,address,role,email,unique_id) values('{$username}','".md5($password)."','{$name}','{$phone}','{$address}','{$role}','{$email}','{$unique_id}')";
 
     $conn->query($sql);
     header('location:index.php');
