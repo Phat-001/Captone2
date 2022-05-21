@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>page/TestPage.qml</file>
+        <file>page/Job.qml</file>
+        <file>unit/SearchFieldArea.qml</file>
+        <file>unit/SearchFieldFake.qml</file>
+        <file>page/SearchPage.qml</file>
+        <file>unit/BackButton.qml</file>
+        <file>unit/RecommenderFake.qml</file>
+        <file>unit/JobCard.qml</file>
+        <file>page/MePage.qml</file>
+        <file>page/LoginPage.qml</file>
+        <file>unit/OptionCard.qml</file>
+        <file>page/WishJobPage.qml</file>
+        <file>unit/WishButton.qml</file>
+        <file>unit/ScheduleButton.qml</file>
+        <file>unit/DatePickerWindow.qml</file>
+        <file>unit/EditDatePickerWindow.qml</file>
+        <file>page/JobDetailDrawer.qml</file>
+        <file>page/ScheduleViewPage.qml</file>
+        <file>unit/DayScheduleCard.qml</file>
+        <file>unit/Schedule.qml</file>
+        <file>unit/NavigationView.qml</file>
+        <file>unit/HourDivide.qml</file>
+        <file>unit/EditAccountWindow.qml</file>
+    </qresource>
+</RCC>

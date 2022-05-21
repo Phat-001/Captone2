@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AppHeader.qml</file>
+        <file>BasePage.qml</file>
+    </qresource>
+</RCC>
