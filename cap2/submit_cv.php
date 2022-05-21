@@ -51,7 +51,28 @@ if (isset($_POST['upload_cv'])){
         #logoutss{
             color: black;
         }
+        .profile_icon{
+                position: absolute !important;
+                top: 33% !important;
+                right: 10px !important;
+                color: black;
+            }
+            .chat_sp{
+                position: absolute !important;
+                top: 28px !important;
+                right: 40% !important;
+                color: black;
+                font-weight: bold;
+            }
+            .chat_sp:hover{
+                
+                color: black;
+            }
+            .avata_img{
+                max-width: 50px;
+            }
     </style>
+    
     <link rel="stylesheet" href="./stylemain.css">
 </head>
 
@@ -70,6 +91,7 @@ if (isset($_POST['upload_cv'])){
                 <li></li>
             </ul>
         </div>
+        <span><a href="chat_page.php" class="chat_sp"><i style="font-size: 20px; color: black; margin-right: 5px;" class="fa-solid fa-circle-arrow-right"></i> Gửi câu hỏi</a></span>
         <span class="guess_name"><img class="avata_img" src="./images/avata/<?php 
 $stmt = $conn->prepare("select * from account where account_id = ?");
 $stmt->bind_param("s", $_SESSION["id_user"]);
@@ -87,7 +109,7 @@ echo  $value;
 
 ?>" alt=""> <?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];}?> </span>
             <a href="logout.php" id="logoutss"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
-            
+            <span class="profile_icon" style=""><a class="hover-icon" href="profile.php?"><i style="font-size: 20px; color: black;" class="fa-solid fa-user-gear"></i></a></span>
             
         
         

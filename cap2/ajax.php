@@ -1,18 +1,24 @@
 <?php
     require('./include/connection.php');
+    $a = "";
+    $aa = "";
     if(isset($_POST['data'])){
         $a = $_POST['data'];
     }
     if(isset($_POST['data_a'])){
         $aa = $_POST['data_a'];
     }
-    if(empty($a)){
-        $a = "sssssssssssssssssssssssssss";
-    }
     if(empty($aa)){
         $aa = "sssssssssssssssssssssssssss";
     }
-    $sql = "select * from job_information where (job_title like '%$a%' or salary like '%$a%' or job_type like '%$a%') or address like '%$aa%'";
+    if(empty($a)){
+        $a = "sssssssssssssssssssssssssss";
+        $a = $aa;
+    }
+    // $sql = "select * from job_information where job_title like '%$a%' or salary like '%$a%' or job_type like '%$a%' or address like '%$aa%'";
+    
+    $sql = "select * from job_information where MATCH(job_title, address) AGAINST('{%$a%}')";
+
     foreach($conn->query($sql) as $row){
         ?>
         <div class="item_job search_job_a">

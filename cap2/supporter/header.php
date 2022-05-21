@@ -15,12 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css_chat/style.css">
-    <link rel="stylesheet" href="./assets/css_chat/responsive.css">
-    <link rel="stylesheet" href="./assets/css_chat/emoji.css"> 
-    <link rel="stylesheet" href="stylemain.css">
-    <script src="./assets/js_chat/jquery.js"></script>
-    <script src="./assets/js_chat/emoji.js"></script>
+    <link rel="stylesheet" href="../assets/css_chat/style.css">
+    <link rel="stylesheet" href="../assets/css_chat/responsive.css">
+    <link rel="stylesheet" href="../assets/css_chat/emoji.css"> 
+    <link rel="stylesheet" href="../stylemain.css">
+    <script src="../assets/js_chat/jquery.js"></script>
+    <script src="../assets/js_chat/emoji.js"></script>
     <title>Chat</title>
     <style>
         .chat_sp{
